@@ -31,6 +31,7 @@ Features.schema = new SimpleSchema({
   parent: {
     type: String,
     label: 'parent title if child node, else null if parent/root node',
+    optional: true,
   },
   nodeType: {
     type: String,
