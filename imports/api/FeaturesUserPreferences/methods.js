@@ -16,8 +16,6 @@ Meteor.methods({
     }
 
     FeaturesUserPreferences.upsert({ userId: usrId }, { $set: prefs });
-
-    return true;
   },
 });
 
