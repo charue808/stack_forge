@@ -11,6 +11,12 @@ export default class Tree extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      treeData: nextProps.features,
+    });
+  }
+
   render() {
     const alertNodeInfo = ({ node, path, treeIndex }) => {
       const objectString = Object.keys(node)
@@ -32,10 +38,22 @@ export default class Tree extends Component {
               const collapseClicked = event.target.className === 'rst__collapseButton';
               const expandClicked = event.target.className === 'rst__expandButton';
               if (collapseClicked) {
-                Meteor.call('featuresUserPreferences.upsert', this.props.userId, { featureId: rowInfo.node._id, expanded: false });
+                Meteor.call('featuresUserPreferences.upsert', this.props.userId, { featureId: rowInfo.node._id, expanded: false }, (err, res) => {
+                  if (err) {
+                    console.log('error', err)
+                  } else {
+                    console.log('success', res);
+                  }
+                });
               }
               if (expandClicked) {
-                Meteor.call('featuresUserPreferences.upsert', this.props.userId, { featureId: rowInfo.node._id, expanded: true });
+                Meteor.call('featuresUserPreferences.upsert', this.props.userId, { featureId: rowInfo.node._id, expanded: true }, (err, res) => {
+                  if (err) {
+                    console.log('error', err);
+                  } else {
+                    console.log('success', res);
+                  }
+                });
               }
             },
             buttons : [

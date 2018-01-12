@@ -11,11 +11,13 @@ Meteor.methods({
       expanded: Boolean,
     });
 
+    console.log('userId', usrId, 'prefs', prefs);
+
     if (!usrId) {
       throw new Meteor.Error('unauthorized');
     }
 
-    FeaturesUserPreferences.upsert({ userId: usrId }, { $set: prefs });
+    FeaturesUserPreferences.upsert({ userId: usrId }, { $set: prefs }, { validate: false }); // added validate false per issue in meteor collection 2 core repo
   },
 });
 

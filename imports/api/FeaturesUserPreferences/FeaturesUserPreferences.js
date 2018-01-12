@@ -22,7 +22,7 @@ FeaturesUserPreferences.schema = new SimpleSchema({
   },
   featureId: {
     type: String,
-    label: '_id of Features collection document',
+    label: '_id of Features collection document parent node',
   },
   expanded: {
     type: Boolean,
